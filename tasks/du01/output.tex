@@ -8,27 +8,30 @@ a doplňte následující tabulku a text.
 
 \vspace{2em}
 \noindent
-Výsledky popisné statistiky lze vidět v Tab. 1 a na \TODO (doplňte).
+Výsledky popisné statistiky lze vidět v \tabref{tab:characteristics-summary} a na \figref{fig:hist_boxplot} a \figref{fig:qq}.
 
 % Fill your table values here :)
-\newcommand{\rangeValues}       {0, 0, 0, 0}
-\newcommand{\minValues}         {0, 0, 0, 0}
-\newcommand{\QfValues}          {0, 0, 0, 0}
-\newcommand{\medianValues}      {0, 0, 0, 0}
-\newcommand{\meanValues}        {0, 0, 0, 0}
-\newcommand{\QtValues}          {0, 0, 0, 0}
-\newcommand{\maxValues}         {0, 0, 0, 0}
-\newcommand{\sdValues}          {0, 0, 0, 0}
-\newcommand{\cvValues}          {0, 0, 0, 0}
-\newcommand{\skewnessValues}    {0, 0, 0, 0}
-\newcommand{\kurtosisValues}    {0, 0, 0, 0}
-\newcommand{\lowerBoundValues}  {0, 0, 0, 0}
-\newcommand{\upperBoundValues}  {0, 0, 0, 0}
+\newcommand{\rangeValues}       {70,        59,         69,         58}
+\newcommand{\minValues}         {-4.8,      4.2,        5.1,        4.2}
+\newcommand{\QfValues}          {5.425,     4.900,      5.500,      4.900}
+\newcommand{\medianValues}      {5.700,     5.300,      5.700,      5.300}
+\newcommand{\meanValues}        {5.600,     5.371,      5.750,      5.191}
+\newcommand{\QtValues}          {6.100,     5.550,      6.100,      5.500}
+\newcommand{\maxValues}         {6.6,       15.8,       6.6,        5.9}
+\newcommand{\sdValues}          {1.334,     1.452,      0.439,      0.451}
+\newcommand{\cvValues}          {23.8,      27.0,       7.6,        8.7}
+\newcommand{\skewnessValues}    {-6.9,      6.4,        0.2,        -0.4}
+\newcommand{\kurtosisValues}    {51.3,      43.8,       -1.0,       -0.7}
+\newcommand{\lowerBoundValues}  {4.4125,    3.9250,     0,          0}
+\newcommand{\upperBoundValues}  {7.1125,    6.5250,     0,          0}
+
+% Additional values
+\newcommand{\sigmaValues} {2.668,     2.903,      0,          0}
 
 % Helper command to put everything in table.
 \newcommand{\tableValue}[2]{%
     \pgfmathparse{{#1}[#2]}%
-    \pgfmathresult%
+    \mbox{\pgfmathresult}%
 }
 
 \vspace{2em}
@@ -63,17 +66,35 @@ Výsledky popisné statistiky lze vidět v Tab. 1 a na \TODO (doplňte).
 \noindent
 \textbf{Grafická prezentace (krabicový graf, histogram, q-q graf)}
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.85\textwidth]{assets/hist_boxplot}
+    \caption{Krabicový graf a histogram znázorňující rozložení nárůstu FPS po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafické karty Nvidia RTX 3070 Ti a AMD Radeon RX 7700 XT}
+    \label{fig:hist_boxplot}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{assets/qq}
+    \caption{Q-Q graf znázorňující nárůst FPS po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafické karty Nvidia RTX 3070 Ti a AMD Radeon RX 7700 XT}
+    \label{fig:qq}
+\end{figure}
+
 \newpage
 \subsubsection*{Analýza nárůstu výkonnostních skóre (FPS) po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafickou kartu Nvidia RTX 3070 Ti}
 
+% TODO: Solve underline questions.
 Během testu byl zjišťován nárůst FPS pro grafickou kartu Nvidia RTX 3070 Ti ve hře "Cyberpunk 2077" mezi původním release a verzí s 1.5 patchem 
-pro \TODO testovacích systémů. Zjištěný nárůst FPS se pohyboval v rozmezí \TODO FPS až \TODO FPS. \textul{Nárůst FPS v testu č. \TODO byl na základě
-metody vnitřních hradeb identifikován jako odlehlé pozorování a nebude zahrnut do dalšího zpracování.\footnote{V případě potřeby 
-(existence vícero odlehlých pozorování) větu vhodným způsobem upravte.} Možné příčiny vzniku odlehlých pozorování jsou: \TODO / Žádný z nárůstů 
-FPS nebyl identifikován jako odlehlé pozorování.} Dále uvedené výsledky tedy pocházejí z analýzy nárůstů FPS zjištěných u \TODO testovacích systémů. 
-Průměrný nárůst FPS byl \TODO FPS, směrodatná odchylka pak \TODO FPS. U poloviny testovacích cyklů nárůst FPS nepřekročil \TODO FPS. 
-V polovině případů se nárůst FPS pohyboval v rozmezí \TODO FPS až \TODO FPS. \ul{Vzhledem k hodnotě variačního koeficientu (\TODO\%) lze 
-/ nelze analyzovaný soubor považovat za homogenní./ Vzhledem k povaze měřené veličiny není variační koeficient vhodnou mírou pro posouzení variability souboru.}
+pro \tableValue{\rangeValues}{0} testovacích systémů. Zjištěný nárůst FPS se pohyboval v rozmezí \tableValue{\minValues}{0} FPS
+až \tableValue{\maxValues}{0} FPS. \ul{Nárůst FPS v testu č. \TODO (20) byl na základě metody vnitřních hradeb identifikován jako odlehlé pozorování
+a nebude zahrnut do dalšího zpracování. \footnote{V případě potřeby (existence vícero odlehlých pozorování) větu vhodným způsobem upravte.}
+Možné příčiny vzniku odlehlých pozorování jsou: \TODO (Chyba při testování, náhly výkyv.) / Žádný z nárůstů
+FPS nebyl identifikován jako odlehlé pozorování.} Dále uvedené výsledky tedy pocházejí z analýzy nárůstů
+FPS zjištěných u \tableValue{\rangeValues}{2} testovacích systémů. Průměrný nárůst FPS byl \tableValue{\meanValues}{2} FPS, směrodatná odchylka
+pak \tableValue{\sdValues}{2} FPS. U poloviny testovacích cyklů nárůst FPS nepřekročil \tableValue{\medianValues}{2} FPS\@.
+V polovině případů se nárůst FPS pohyboval v rozmezí \tableValue{\QfValues}{2} FPS až \tableValue{\QtValues}{2} FPS. \ul{Vzhledem k hodnotě
+variačního koeficientu (\mbox{\tableValue{\cvValues}{3}}\%) lze / nelze analyzovaný soubor považovat za homogenní./ Vzhledem k povaze měřené
+veličiny není variační koeficient vhodnou mírou pro posouzení variability souboru.}
 
 \vspace{1em}
 \noindent
@@ -81,14 +102,16 @@ Výsledky pro grafickou kartu AMD Radeon RX 7700 XT lze komentovat obdobně.
 
 \subsubsection*{Ověření normality nárůstu výkonnostních skóre (FPS) po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafickou kartu Nvidia RTX 3070 Ti}
 
-Na základě grafického zobrazení (viz \TODO) a výběrové šikmosti a špičatosti (výběrová šikmost i špičatost \ul{leží \slash neleží} 
-v intervalu (-2, 2) \ul{lze \slash nelze} předpokládat, že pozorovaný nárůst FPS má normální rozdělení. Dle \ul{pravidla 3$\sigma$ \slash Čebyševovy nerovnosti} 
-lze tedy očekávat, že \ul{přibližně u 95 \% \slash alespoň 75 \%} naměřených nárůstů ve výkonu bude \TODO FPS až \TODO FPS.
+% TODO: Solve underline questions.
+Na základě grafického zobrazení (viz \TODO) a výběrové šikmosti a špičatosti (viz \tabref{tab:characteristics-summary}, výběrová šikmost a špičatost \ul{leží \slash neleží}
+v intervalu (-2, 2)) \ul{lze \slash nelze} předpokládat, že pozorovaný nárůst FPS má normální rozdělení. Dle \ul{pravidla 3$\sigma$ \slash Čebyševovy nerovnosti}
+lze tedy očekávat, že \ul{přibližně u 95 \% \slash alespoň 75 \%} naměřených nárůstů ve výkonu bude \tableValue{\sigmaValues}{0} FPS až \tableValue{\sigmaValues}{1} FPS\@.
 
 \subsubsection*{Ověření normality nárůstu výkonnostních skóre (FPS) po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafickou kartu AMD Radeon RX 7700 XT}
 
-Na základě grafického zobrazení (viz \TODO) a výběrové šikmosti a špičatosti (výběrová šikmost i špičatost \ul{leží \slash neleží} v intervalu (-2, 2) 
-\ul{lze \slash nelze} předpokládat, že pozorovaný nárůst FPS má normální rozdělení. Dle \ul{pravidla 3$\sigma$ \slash Čebyševovy nerovnosti} lze tedy očekávat, 
-že \ul{přibližně u 95 \% \slash alespoň 75 \%} naměřených nárůstů ve výkonu bude \TODO FPS až \TODO FPS.
+% TODO: Solve underline questions.
+Na základě grafického zobrazení (viz \TODO) a výběrové šikmosti a špičatosti (viz \tabref{tab:characteristics-summary}, výběrová šikmost a špičatost \ul{leží \slash neleží}
+v intervalu (-2, 2)) \ul{lze \slash nelze} předpokládat, že pozorovaný nárůst FPS má normální rozdělení. Dle \ul{pravidla 3$\sigma$ \slash Čebyševovy nerovnosti}
+lze tedy očekávat, že \ul{přibližně u 95 \% \slash alespoň 75 \%} naměřených nárůstů ve výkonu bude \tableValue{\sigmaValues}{2} FPS až \tableValue{\sigmaValues}{3} FPS\@.
 
 \endinput

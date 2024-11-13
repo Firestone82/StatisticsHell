@@ -11,17 +11,22 @@
 \usepackage{pgf}
 \usepackage{enumitem}
 \usepackage[normalem]{ulem}
+\usepackage{hyperref}
 
 \geometry{top=2.5cm, bottom=2.5cm, left=2.0cm, right=2.0cm}
 
 % Variables, fill it here!
-\newcommand{\sourceId}   {X}
-\newcommand{\studentName}{Student name}
-\newcommand{\studentID}  {Student login}
-\newcommand{\teacherName}{Teacher's name}
+\newcommand{\sourceId}   {166}
+\newcommand{\studentName}{Bc. Pavel Mikula}
+\newcommand{\studentID}  {MIK0486}
+\newcommand{\teacherName}{Ing. Michal Béreš, Ph.D.}
 
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
+
+% Table and Image references
+\newcommand{\tabref}[1]{Tabulka \ref{#1}}
+\newcommand{\figref}[1]{Obrázek \ref{#1}}
 
 % TODO command, to show spaces where to fill requested values more easily
 \newcommand{\TODO}{\mbox{\textbf{\textcolor{red}{...} }}}
@@ -64,7 +69,7 @@
     \begin{tabular}{|p{8em}|P{10em}|P{10em}|}
         \hline
                         & \textbf{Datum odevzdání}  & \textbf{Hodnocení}    \\ \hline
-        Domácí úkol 1:  &                           &                       \\ \hline
+        Domácí úkol 1:  & 18.11.2024                &                       \\ \hline
         Domácí úkol 2:  &                           &                       \\ \hline
         Domácí úkol 3:  &                           &                       \\ \hline
         Celkem:         & ------------------------  &                       \\ \hline
@@ -81,7 +86,7 @@
 \input{pages/source_description}
 
 \newpage
-\input{tasks/du01}
+\input{tasks/du01/output}
 
 \newpage
 \input{tasks/du02}
