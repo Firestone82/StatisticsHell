@@ -1,0 +1,50 @@
+\subsection*{Jak identifikovat, zda jsou v datech odlehlá pozorování?}
+\label{subsec:how-to-identify-outliers}
+
+\noindent
+\textul{Empirické posouzení:}
+\begin{itemize}
+    \item použití vnitřních (vnějších) hradeb
+    \item vizuální posouzení krabicového grafu.
+\end{itemize}
+
+\noindent 
+Jak naložit s odlehlými hodnotami by měl definovat hlavně zadavatel analýzy (expert na danou problematiku).
+
+\subsection*{Jak ověřit normalitu dat?}
+\label{subsec:how-to-verify-normality}
+
+\noindent
+\textul{Empirické posouzení:}
+\begin{itemize}
+    \item vizuální posouzení histogramu,
+    \item vizuální posouzení grafu odhadu hustoty pravděpodobnosti,
+    \item Q-Q graf,
+    \item posouzení výběrové šikmosti a výběrové špičatosti.
+\end{itemize}
+
+\noindent
+\textul{Exaktní posouzení:}
+\begin{itemize}
+    \item testy normality (např. Shapirův – Wilkův test, Andersonův-Darlingův test, Lillieforsův test, ...)
+\end{itemize}
+
+\subsection*{Jak ověřit homoskedasticitu (shodu rozptylů)?}
+\label{subsec:how-to-verify-homoscedasticity}
+
+\noindent
+\textul{Empirické posouzení:}
+\begin{itemize}
+    \item poměr největšího a nejmenšího rozptylu,
+    \item vizuální posouzení krabicového grafu.
+\end{itemize}
+
+\noindent
+\textul{Exaktní posouzení:}
+\begin{itemize}
+    \item F – test (parametrický dvouvýběrový test),
+    \item Bartlettův test (parametrický vícevýběrový test),
+    \item Leveneův test (neparametrický test).
+\end{itemize}
+
+\endinput
