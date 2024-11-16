@@ -98,17 +98,17 @@ rownames(characteristics_table) <- c("nvidia_3070", "amd_7700", "nvidia_3070_no_
 
 t(characteristics_table)
 
-# Sigma 2 rule
+# Sigma x rule
 # ==================================================
 
-sigma <- function(data) {
-	lower_bound <- data$Q1 - 2 * data$sd
-	upper_bound <- data$Q3 + 2 * data$sd
+sigma <- function(data, rule) {
+	lower_bound <- data$mean - rule * data$sd
+	upper_bound <- data$mean + rule * data$sd
 	return(c(lower_bound, upper_bound))
 }
 
-print(paste("Nvidia 3070 - 3 sigma rule: ", sigma(nvidia_3070_char)))
-print(paste("AMD 7700 - 3 sigma rule: ", sigma(amd_7700_char)))
+print(paste("Nvidia 3070 - 3 sigma rule: ", sigma(nvidia_3070_char_no_outliers, 2)))
+print(paste("AMD 7700 - 3 sigma rule: ", sigma(amd_7700_char_no_outliers, 2)))
 
 # Graphs
 # ==================================================
@@ -120,39 +120,43 @@ print(paste("AMD 7700 - 3 sigma rule: ", sigma(amd_7700_char)))
 	# Template
 	pom <- layout(mat = matrix(1:4, 2, 2, byrow = FALSE), height = c(8, 3))
 	par(bg = "white")
-	par(oma = c(1, 1, 0, 1), mar = c(2, 2, 4, 1))
+	par(oma = c(0, 0, 0, 0))
 
+	par(mar = c(2, 4, 2, 2))
 	hist(
 		nvidia_3070_no_outliers$increase,
-		main = "Histogram & Boxplot for Nvidia 3070",
-		xlab = "increase",
-		ylab = "frequency",
+		main = "Nvidia RTX 3070 Ti",
+		ylab = "Frequency",
 		xlim = c(-5, 7),
 		ylim = c(0, 30),
 		breaks = 5
 	)
 
+	par(mar = c(4, 2, 2, 2))
 	boxplot(
 		nvidia_3070$increase,
 		horizontal = TRUE,
 		ylim = c(-5, 7),
+		xlab = "FPS increase",
 		boxwex = 1.5
 	)
 
+	par(mar = c(2, 4, 2, 2))
 	hist(
 		amd_7700_no_outliers$increase,
-		main = "Histogram & Boxplot for AMD 7700",
-		xlab = "increase",
-		ylab = "frequency",
+		main = "AMD Radeon RX 7700 XT",
+		ylab = "",
 		xlim = c(3, 16),
 		ylim = c(0, 30),
 		breaks = 5
 	)
 
+	par(mar = c(4, 2, 2, 2))
 	boxplot(
 		amd_7700$increase,
 		horizontal = TRUE,
 		ylim = c(3, 16),
+		xlab = "FPS increase",
 		boxwex = 1.5
 	)
 
@@ -161,26 +165,25 @@ print(paste("AMD 7700 - 3 sigma rule: ", sigma(amd_7700_char)))
 
 # QQ plot
 {
-	png("assets/qq.png", width = 800, height = 500, res = 100)
+	png("assets/qq.png", width = 800, height = 450, res = 100)
 
 	# Template
-	pom <- layout(mat = matrix(1:2, 1, 2, byrow = FALSE), height = c(2.5, 1))
+	pom <- layout(mat = matrix(1:2, 1, 2, byrow = FALSE), height = c(2, 1))
 	par(bg = "white")
-	par(oma = c(1, 1, 0, 1), mar = c(2, 2, 4, 1))
+	par(oma = c(0, 0, 0, 0))
 
+	par(mar = c(4, 4, 3, 2))
 	qqnorm(
-		nvidia_3070_no_outliers$increase,
-		main = "QQ plot for Nvidia 3070",
-		xlab = "Theoretical quantiles",
-		ylab = "Sample quantiles"
+	  nvidia_3070_no_outliers$increase,
+	  main = "Nvidia RTX 3070 Ti"
 	)
 	qqline(nvidia_3070_no_outliers$increase)
 
+	par(mar = c(4, 4, 3, 2))
 	qqnorm(
-		amd_7700_no_outliers$increase,
-		main = "QQ plot for AMD 7700",
-		xlab = "Theoretical quantiles",
-		ylab = "Sample quantiles"
+	  amd_7700_no_outliers$increase,
+	  ylab = "",
+	  main = "AMD Radeon RX 7700 XT",
 	)
 	qqline(amd_7700_no_outliers$increase)
 
