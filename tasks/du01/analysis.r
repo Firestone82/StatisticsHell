@@ -72,18 +72,18 @@ print(amd_7700_outliers)
 characteristics <- function(data) {
 	data %>% summarise(
 		range = length(increase),
-		minimum = min(increase, na.rm = TRUE),
-		Q1 = quantile(increase, 0.25, na.rm = TRUE),                  # Round to same places as 'sd'
-		median = median(increase, na.rm = TRUE),                      # Round to same places as 'sd'
-		mean = mean(increase, na.rm = TRUE),                          # Round to same places as 'sd'
-		Q3 = quantile(increase, 0.75, na.rm = TRUE),                  # Round to same places as 'sd'
-		maximum = max(increase, na.rm = TRUE),
-		sd = sd(increase, na.rm = TRUE),
-		cv = (sd(increase) / mean(increase)) * 100,                   # Round to 1 decimal place
-		skewness = moments::skewness(increase, na.rm = TRUE),         # Round to 1 decimal place
-		kurtosis = (moments::kurtosis(increase, na.rm = TRUE) - 3),   # Round to 1 decimal place
-		lower_bound = Q1 - 1.5 * (Q3 - Q1),                           # Round to 4 decimal places
-		upper_bound = Q3 + 1.5 * (Q3 - Q1)                            # Round to 4 decimal places
+		minimum = min(increase),
+		Q1 = quantile(increase, 0.25),                  # Round to same places as 'sd'
+		median = median(increase),                      # Round to same places as 'sd'
+		mean = mean(increase),                          # Round to same places as 'sd'
+		Q3 = quantile(increase, 0.75),                  # Round to same places as 'sd'
+		maximum = max(increase),
+		sd = sd(increase),
+		cv = (sd / mean) * 100,                         # Round to 1 decimal place
+		skewness = moments::skewness(increase),         # Round to 1 decimal place
+		kurtosis = (moments::kurtosis(increase) - 3),   # Round to 1 decimal place
+		lower_bound = Q1 - 1.5 * (Q3 - Q1),             # Round to 4 decimal places
+		upper_bound = Q3 + 1.5 * (Q3 - Q1)              # Round to 4 decimal places
 	)
 }
 
@@ -94,15 +94,21 @@ nvidia_3070_char_no_outliers <- characteristics(nvidia_3070_no_outliers)
 amd_7700_char_no_outliers <- characteristics(amd_7700_no_outliers)
 
 characteristics_table <- as.data.frame(rbind(nvidia_3070_char, amd_7700_char, nvidia_3070_char_no_outliers, amd_7700_char_no_outliers))
-rownames(characteristics_table) <- c("nvidia_3070_rel", "amd_7700_rel", "nvidia_3070_patch", "amd_7700_patch")
+rownames(characteristics_table) <- c("nvidia_3070", "amd_7700", "nvidia_3070_no_outliers", "amd_7700_no_outliers")
 
 t(characteristics_table)
 
-# Sigma 3 rule
+# Sigma 2 rule
 # ==================================================
 
-print(paste("Nvidia 3070 - 3 sigma rule: ", nvidia_3070_char$sd * 2))
-print(paste("AMD 7700 - 3 sigma rule: ", amd_7700_char$sd * 2))
+sigma <- function(data) {
+	lower_bound <- data$Q1 - 2 * data$sd
+	upper_bound <- data$Q3 + 2 * data$sd
+	return(c(lower_bound, upper_bound))
+}
+
+print(paste("Nvidia 3070 - 3 sigma rule: ", sigma(nvidia_3070_char)))
+print(paste("AMD 7700 - 3 sigma rule: ", sigma(amd_7700_char)))
 
 # Graphs
 # ==================================================
@@ -117,30 +123,36 @@ print(paste("AMD 7700 - 3 sigma rule: ", amd_7700_char$sd * 2))
 	par(oma = c(1, 1, 0, 1), mar = c(2, 2, 4, 1))
 
 	hist(
-		nvidia_3070$increase,
+		nvidia_3070_no_outliers$increase,
 		main = "Histogram & Boxplot for Nvidia 3070",
 		xlab = "increase",
 		ylab = "frequency",
-		breaks = 20
+		xlim = c(-5, 7),
+		ylim = c(0, 30),
+		breaks = 5
 	)
 
 	boxplot(
 		nvidia_3070$increase,
 		horizontal = TRUE,
+		ylim = c(-5, 7),
 		boxwex = 1.5
 	)
 
 	hist(
-		amd_7700$increase,
+		amd_7700_no_outliers$increase,
 		main = "Histogram & Boxplot for AMD 7700",
 		xlab = "increase",
 		ylab = "frequency",
-		breaks = 20
+		xlim = c(3, 16),
+		ylim = c(0, 30),
+		breaks = 5
 	)
 
 	boxplot(
 		amd_7700$increase,
 		horizontal = TRUE,
+		ylim = c(3, 16),
 		boxwex = 1.5
 	)
 
