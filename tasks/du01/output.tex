@@ -3,7 +3,7 @@
 
 Pomocí nástrojů explorační analýzy zkoumejte nárůst výkonnostních skóre (FPS) po aplikaci 1.5 patche 
 (tj. rozdíl výkonnostních skóre pro verzi „patched“ a verzi „release“) ve hře "Cyberpunk 2077" pro grafické karty 
-Nvidia RTX 3070 Ti a AMD Radeon RX 7700 XT. Data vhodně graficky prezentujte (krabicový graf, histogram, q-q graf) 
+\nvidiaCard\ a \amdCard\. Data vhodně graficky prezentujte (krabicový graf, histogram, q-q graf)
 a doplňte následující tabulku a text.
 
 \vspace{2em}
@@ -31,30 +31,39 @@ Výsledky popisné statistiky lze vidět v \tabref{tab:characteristics-summary} 
 % Helper command to put everything in table.
 \newcommand{\tableValue}[2]{%
     \pgfmathparse{{#1}[#2]}%
-    \mbox{\pgfmathresult}%
+    \edef\tempResult{\pgfmathresult}%
+    \ifnum\pdfstrcmp{\tempResult}{inf}=0 %
+        $\infty$%
+    \else%
+        \mbox{\tempResult}%
+    \fi%
 }
 
+% Fuckin graphic card names
+\newcommand{\nvidiaCard}{Nvidia RTX 3070 Ti}
+\newcommand{\amdCard} {AMD Radeon RX 7700 XT}
+
 \begin{table}[h!]
-    \caption{Nárůst výkonnostních skóre (FPS) po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafické karty Nvidia RTX 3070 Ti a AMD Radeon RX 7700 XT (souhrnné statistiky)}
+    \caption{Nárůst výkonnostních skóre (FPS) po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafické karty \nvidiaCard\ a \amdCard\ (souhrnné statistiky)}
     \label{tab:characteristics-summary}
     \vspace{0.5em}
     \renewcommand{\arraystretch}{1.3}
     \resizebox{\textwidth}{!}{%
         \begin{tabular}{|p{3.5cm}|P{3cm}|P{3cm}|P{3cm}|P{3cm}|}
             \hline
-            & \multicolumn{2}{P{6cm}|}{\textbf{Původní data}} & \multicolumn{2}{P{6cm}|}{\textbf{Data po odstranění odlehlých pozorování}} \\ \hline
-            & \centering \textbf{Nvidia RTX 3070 Ti} & \textbf{AMD Radeon RX 7700 XT} & \centering \textbf{Nvidia RTX 3070 Ti} & \textbf{AMD Radeon RX 7700 XT} \\ \hline
-            rozsah souboru        & \tableValue{\rangeValues}{0}    & \tableValue{\rangeValues}{1}    & \tableValue{\rangeValues}{2}    & \tableValue{\rangeValues}{3}    \\ \hline
-            minimum               & \tableValue{\minValues}{0}      & \tableValue{\minValues}{1}      & \tableValue{\minValues}{2}      & \tableValue{\minValues}{3}      \\ \hline
-            dolní kvartil         & \tableValue{\QfValues}{0}       & \tableValue{\QfValues}{1}       & \tableValue{\QfValues}{2}       & \tableValue{\QfValues}{3}       \\ \hline
-            medián                & \tableValue{\medianValues}{0}   & \tableValue{\medianValues}{1}   & \tableValue{\medianValues}{2}   & \tableValue{\medianValues}{3}   \\ \hline
-            průměr                & \tableValue{\meanValues}{0}     & \tableValue{\meanValues}{1}     & \tableValue{\meanValues}{2}     & \tableValue{\meanValues}{3}     \\ \hline
-            horní kvartil         & \tableValue{\QtValues}{0}       & \tableValue{\QtValues}{1}       & \tableValue{\QtValues}{2}       & \tableValue{\QtValues}{3}       \\ \hline
-            maximum               & \tableValue{\maxValues}{0}      & \tableValue{\maxValues}{1}      & \tableValue{\maxValues}{2}      & \tableValue{\maxValues}{3}      \\ \hline
-            směrodat. odchylka    & \tableValue{\sdValues}{0}       & \tableValue{\sdValues}{1}       & \tableValue{\sdValues}{2}       & \tableValue{\sdValues}{3}       \\ \hline
-            variační koefi. (\%)  & \tableValue{\cvValues}{0}       & \tableValue{\cvValues}{1}       & \tableValue{\cvValues}{2}       & \tableValue{\cvValues}{3}       \\ \hline
-            šikmost               & \tableValue{\skewnessValues}{0} & \tableValue{\skewnessValues}{1} & \tableValue{\skewnessValues}{2} & \tableValue{\skewnessValues}{3} \\ \hline
-            špičatost             & \tableValue{\kurtosisValues}{0} & \tableValue{\kurtosisValues}{1} & \tableValue{\kurtosisValues}{2} & \tableValue{\kurtosisValues}{3} \\ \hline
+                                  & \multicolumn{2}{P{6cm}|}{\textbf{Původní data}}                   & \multicolumn{2}{P{6cm}|}{\textbf{Data po odstranění odlehlých pozorování}} \\ \hline
+                                  & \centering \textbf{\nvidiaCard} & \textbf{\amdCard}               & \centering \textbf{\nvidiaCard} & \textbf{\amdCard}                        \\ \hline
+            rozsah souboru        & \tableValue{\rangeValues}{0}    & \tableValue{\rangeValues}{1}    & \tableValue{\rangeValues}{2}    & \tableValue{\rangeValues}{3}             \\ \hline
+            minimum               & \tableValue{\minValues}{0}      & \tableValue{\minValues}{1}      & \tableValue{\minValues}{2}      & \tableValue{\minValues}{3}               \\ \hline
+            dolní kvartil         & \tableValue{\QfValues}{0}       & \tableValue{\QfValues}{1}       & \tableValue{\QfValues}{2}       & \tableValue{\QfValues}{3}                \\ \hline
+            medián                & \tableValue{\medianValues}{0}   & \tableValue{\medianValues}{1}   & \tableValue{\medianValues}{2}   & \tableValue{\medianValues}{3}            \\ \hline
+            průměr                & \tableValue{\meanValues}{0}     & \tableValue{\meanValues}{1}     & \tableValue{\meanValues}{2}     & \tableValue{\meanValues}{3}              \\ \hline
+            horní kvartil         & \tableValue{\QtValues}{0}       & \tableValue{\QtValues}{1}       & \tableValue{\QtValues}{2}       & \tableValue{\QtValues}{3}                \\ \hline
+            maximum               & \tableValue{\maxValues}{0}      & \tableValue{\maxValues}{1}      & \tableValue{\maxValues}{2}      & \tableValue{\maxValues}{3}               \\ \hline
+            směrodat. odchylka    & \tableValue{\sdValues}{0}       & \tableValue{\sdValues}{1}       & \tableValue{\sdValues}{2}       & \tableValue{\sdValues}{3}                \\ \hline
+            variační koefi. (\%)  & \tableValue{\cvValues}{0}       & \tableValue{\cvValues}{1}       & \tableValue{\cvValues}{2}       & \tableValue{\cvValues}{3}                \\ \hline
+            šikmost               & \tableValue{\skewnessValues}{0} & \tableValue{\skewnessValues}{1} & \tableValue{\skewnessValues}{2} & \tableValue{\skewnessValues}{3}          \\ \hline
+            špičatost             & \tableValue{\kurtosisValues}{0} & \tableValue{\kurtosisValues}{1} & \tableValue{\kurtosisValues}{2} & \tableValue{\kurtosisValues}{3}          \\ \hline
             \multicolumn{5}{|p{16cm}|}{\textbf{Identifikace odlehlých pozorování (vnitřní hradby)}} \\ \hline
             dolní mez   & \tableValue{\lowerBoundValues}{0} & \tableValue{\lowerBoundValues}{1} & \multicolumn{2}{P{6cm}|}{------------} \\ \hline
             horní mez   & \tableValue{\upperBoundValues}{0} & \tableValue{\upperBoundValues}{1} & \multicolumn{2}{P{6cm}|}{------------} \\ \hline
@@ -69,28 +78,28 @@ Výsledky popisné statistiky lze vidět v \tabref{tab:characteristics-summary} 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.75\textwidth]{assets/box_plot}
-    \caption{Krabicový graf znázorňující rozložení nárůstu FPS po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafické karty Nvidia RTX 3070 Ti a AMD Radeon RX 7700 XT}
+    \caption{Krabicový graf znázorňující rozložení nárůstu FPS po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafické karty \nvidiaCard\ a \amdCard}
     \label{fig:box_plot}
 \end{figure}
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.75\textwidth]{assets/histogram}
-    \caption{Histogram znázorňující rozložení nárůstu FPS po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafické karty Nvidia RTX 3070 Ti a AMD Radeon RX 7700 XT}
+    \caption{Histogram znázorňující rozložení nárůstu FPS po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafické karty \nvidiaCard\ a \amdCard}
     \label{fig:histogram}
 \end{figure}
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.85\textwidth]{assets/qq}
-    \caption{Q-Q graf znázorňující nárůst FPS po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafické karty Nvidia RTX 3070 Ti a AMD Radeon RX 7700 XT}
+    \caption{Q-Q graf znázorňující nárůst FPS po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafické karty \nvidiaCard\ a \amdCard}
     \label{fig:qq}
 \end{figure}
 
 \newpage
-\subsubsection*{Analýza nárůstu výkonnostních skóre (FPS) po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafickou kartu Nvidia RTX 3070 Ti}
+\subsubsection*{Analýza nárůstu výkonnostních skóre (FPS) po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafickou kartu \nvidiaCard}
 
-Během testu byl zjišťován nárůst FPS pro grafickou kartu Nvidia RTX 3070 Ti ve hře "Cyberpunk 2077" mezi původním release a verzí s 1.5 patchem
+Během testu byl zjišťován nárůst FPS pro grafickou kartu \nvidiaCard\ ve hře "Cyberpunk 2077" mezi původním release a verzí s 1.5 patchem
 pro \tableValue{\rangeValues}{0} testovacích systémů. Zjištěný nárůst FPS se pohyboval v rozmezí \tableValue{\minValues}{0} FPS
 až \tableValue{\maxValues}{0} FPS. Nárůst FPS v testu č. 20 byl na základě metody vnitřních hradeb identifikován jako odlehlé pozorování
 a nebude zahrnut do dalšího zpracování. Možné příčiny vzniku odlehlých pozorování jsou: Chyba při testování vzniklá náhlým výkyvem výkonu počítače
@@ -102,26 +111,22 @@ pro posouzení variability souboru.
 
 \vspace{1em}
 \noindent
+Výsledky pro grafickou kartu AMD Radeon RX 7700 XT lze komentovat obdobně.
+Nárůst FPS se pohyboval v rozmezí \tableValue{\minValues}{1} až \tableValue{\maxValues}{1} FPS, s průměrným nárůstem \tableValue{\meanValues}{3} FPS a
+směrodatnou odchylkou \tableValue{\sdValues}{3} FPS.\@
+Za pomocí metody vnitřních hradeb bylo identifikováno odlehlé pozorování v testu č.\ 24, které bylo z analýzy vyloučeno.
+Medián nárůstu činil \tableValue{\medianValues}{3} FPS, přičemž polovina výsledků spadala do intervalu \tableValue{\QfValues}{3} až \tableValue{\QtValues}{3} FPS.\@
+Opět i zde není variační koeficient vhodným měřítkem variability souboru.
 
-Během testu byl zjišťován nárůst FPS pro grafickou kartu AMD Radeon RX 7700 XT ve hře "Cyberpunk 2077" mezi původním release a verzí s 1.5 patchem
-pro \tableValue{\rangeValues}{1} testovacích systémů. Zjištěný nárůst FPS se pohyboval v rozmezí \tableValue{\minValues}{1} FPS
-až \tableValue{\maxValues}{1} FPS. Nárůst FPS v testu č. 24 byl na základě metody vnitřních hradeb identifikován jako odlehlé pozorování
-a nebude zahrnut do dalšího zpracování. Možné příčiny vzniku odlehlých pozorování jsou: Chyba při testování vzniklá náhlým výkyvem výkonu počítače
-nebo chyba hardwaru výpočetní stanice. Dále uvedené výsledky tedy pocházejí z analýzy nárůstů FPS zjištěných u \tableValue{\rangeValues}{3}
-testovacích systémů. Průměrný nárůst FPS byl \tableValue{\meanValues}{3} FPS, směrodatná odchylka pak \tableValue{\sdValues}{3} FPS\@.
-U poloviny testovacích cyklů nárůst FPS nepřekročil \tableValue{\medianValues}{3} FPS. V polovině případů se nárůst FPS pohyboval v
-rozmezí \tableValue{\QfValues}{3} FPS až \tableValue{\QtValues}{3} FPS. Vzhledem k povaze měřené veličiny není variační koeficient vhodnou mírou
-pro posouzení variability souboru.
+\subsubsection*{Ověření normality nárůstu výkonnostních skóre (FPS) po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafickou kartu \nvidiaCard}
 
-\subsubsection*{Ověření normality nárůstu výkonnostních skóre (FPS) po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafickou kartu Nvidia RTX 3070 Ti}
-
-Na základě grafického zobrazení (viz \figref{fig:qq}) u grafické karty Nvidia RTX 3070 Ti a výběrové šikmosti a špičatosti (viz \tabref{tab:characteristics-summary},
+Na základě grafického zobrazení (viz \figref{fig:qq}) u grafické karty \nvidiaCard\ a výběrové šikmosti a špičatosti (viz \tabref{tab:characteristics-summary},
 výběrová šikmost a špičatost leží v intervalu (-2, 2)) lze předpokládat, že pozorovaný nárůst FPS má normální rozdělení. Dle pravidla 3$\sigma$ lze tedy očekávat,
 že přibližně u 95 \% naměřených nárůstů ve výkonu bude \tableValue{\sigmaValues}{0} FPS až \tableValue{\sigmaValues}{1} FPS\@.
 
-\subsubsection*{Ověření normality nárůstu výkonnostních skóre (FPS) po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafickou kartu AMD Radeon RX 7700 XT}
+\subsubsection*{Ověření normality nárůstu výkonnostních skóre (FPS) po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafickou kartu \amdCard}
 
-Na základě grafického zobrazení (viz \figref{fig:qq}) u grafické karty AMD Radeon RX 7700 XT a výběrové šikmosti a špičatosti (viz \tabref{tab:characteristics-summary},
+Na základě grafického zobrazení (viz \figref{fig:qq}) u grafické karty \amdCard\ a výběrové šikmosti a špičatosti (viz \tabref{tab:characteristics-summary},
 výběrová šikmost a špičatost leží v intervalu (-2, 2)) lze předpokládat, že pozorovaný nárůst FPS má normální rozdělení. Dle pravidla 3$\sigma$ lze tedy očekávat,
 že přibližně u 95 \% naměřených nárůstů ve výkonu bude \tableValue{\sigmaValues}{2} FPS až \tableValue{\sigmaValues}{3} FPS\@.
 

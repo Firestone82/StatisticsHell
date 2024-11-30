@@ -128,7 +128,7 @@ print(paste("AMD 7700 - 3 sigma rule: ", sigma(amd_7700_char_no_outliers, 2)))
 	  nvidia_3070$increase,
 	  horizontal = TRUE,
 	  ylim = c(-5, 16),
-	  ylab = "AMD 7700",
+	  ylab = "Nvidia 3070",
 	  main = "Boxplots for Nvidia 3070 and AMD 7700",
 	  boxwex = 1.5
 	)
@@ -139,7 +139,7 @@ print(paste("AMD 7700 - 3 sigma rule: ", sigma(amd_7700_char_no_outliers, 2)))
 	  amd_7700$increase,
 	  horizontal = TRUE,
 	  ylim = c(-5, 16),
-	  ylab = "Nvidia 3070",
+	  ylab = "AMD 7700",
 	  main = "",
 	  boxwex = 1.5
 	)
