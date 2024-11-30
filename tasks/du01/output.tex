@@ -8,7 +8,7 @@ a doplňte následující tabulku a text.
 
 \vspace{2em}
 \noindent
-Výsledky popisné statistiky lze vidět v \tabref{tab:characteristics-summary} a na \figref{fig:hist_boxplot} a \figref{fig:qq}.
+Výsledky popisné statistiky lze vidět v \tabref{tab:characteristics-summary} a na  \figref{fig:box_plot}, \figref{fig:histogram} a \figref{fig:qq}.
 
 % Fill your table values here :)
 \newcommand{\rangeValues}       {70,        59,         69,         58}
@@ -68,9 +68,16 @@ Výsledky popisné statistiky lze vidět v \tabref{tab:characteristics-summary} 
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.85\textwidth]{assets/hist_boxplot}
-    \caption{Krabicový graf a histogram znázorňující rozložení nárůstu FPS po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafické karty Nvidia RTX 3070 Ti a AMD Radeon RX 7700 XT}
-    \label{fig:hist_boxplot}
+    \includegraphics[width=0.75\textwidth]{assets/box_plot}
+    \caption{Krabicový graf znázorňující rozložení nárůstu FPS po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafické karty Nvidia RTX 3070 Ti a AMD Radeon RX 7700 XT}
+    \label{fig:box_plot}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.75\textwidth]{assets/histogram}
+    \caption{Histogram znázorňující rozložení nárůstu FPS po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafické karty Nvidia RTX 3070 Ti a AMD Radeon RX 7700 XT}
+    \label{fig:histogram}
 \end{figure}
 
 \begin{figure}[h!]
@@ -90,12 +97,21 @@ a nebude zahrnut do dalšího zpracování. Možné příčiny vzniku odlehlých
 nebo chyba hardwaru výpočetní stanice. Dále uvedené výsledky tedy pocházejí z analýzy nárůstů FPS zjištěných u \tableValue{\rangeValues}{2}
 testovacích systémů. Průměrný nárůst FPS byl \tableValue{\meanValues}{2} FPS, směrodatná odchylka pak \tableValue{\sdValues}{2} FPS\@.
 U poloviny testovacích cyklů nárůst FPS nepřekročil \tableValue{\medianValues}{2} FPS. V polovině případů se nárůst FPS pohyboval v
-rozmezí \tableValue{\QfValues}{2} FPS až \tableValue{\QtValues}{2} FPS. Vzhledem k hodnotě variačního koeficientu (\mbox{\tableValue{\cvValues}{3}}\%)
-lze analyzovaný soubor považovat za homogenní.
+rozmezí \tableValue{\QfValues}{2} FPS až \tableValue{\QtValues}{2} FPS. Vzhledem k povaze měřené veličiny není variační koeficient vhodnou mírou
+pro posouzení variability souboru.
 
 \vspace{1em}
 \noindent
-Výsledky pro grafickou kartu AMD Radeon RX 7700 XT lze komentovat obdobně.
+
+Během testu byl zjišťován nárůst FPS pro grafickou kartu AMD Radeon RX 7700 XT ve hře "Cyberpunk 2077" mezi původním release a verzí s 1.5 patchem
+pro \tableValue{\rangeValues}{1} testovacích systémů. Zjištěný nárůst FPS se pohyboval v rozmezí \tableValue{\minValues}{1} FPS
+až \tableValue{\maxValues}{1} FPS. Nárůst FPS v testu č. 24 byl na základě metody vnitřních hradeb identifikován jako odlehlé pozorování
+a nebude zahrnut do dalšího zpracování. Možné příčiny vzniku odlehlých pozorování jsou: Chyba při testování vzniklá náhlým výkyvem výkonu počítače
+nebo chyba hardwaru výpočetní stanice. Dále uvedené výsledky tedy pocházejí z analýzy nárůstů FPS zjištěných u \tableValue{\rangeValues}{3}
+testovacích systémů. Průměrný nárůst FPS byl \tableValue{\meanValues}{3} FPS, směrodatná odchylka pak \tableValue{\sdValues}{3} FPS\@.
+U poloviny testovacích cyklů nárůst FPS nepřekročil \tableValue{\medianValues}{3} FPS. V polovině případů se nárůst FPS pohyboval v
+rozmezí \tableValue{\QfValues}{3} FPS až \tableValue{\QtValues}{3} FPS. Vzhledem k povaze měřené veličiny není variační koeficient vhodnou mírou
+pro posouzení variability souboru.
 
 \subsubsection*{Ověření normality nárůstu výkonnostních skóre (FPS) po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafickou kartu Nvidia RTX 3070 Ti}
 

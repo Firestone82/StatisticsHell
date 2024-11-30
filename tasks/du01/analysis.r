@@ -113,51 +113,69 @@ print(paste("AMD 7700 - 3 sigma rule: ", sigma(amd_7700_char_no_outliers, 2)))
 # Graphs
 # ==================================================
 
-# Boxplot & Histogram
+# Boxplot
 {
-	png("assets/hist_boxplot.png", width = 800, height = 600, res = 100)
+	png("assets/box_plot.png", width = 800, height = 400, res = 100)
 
-	# Template
-	pom <- layout(mat = matrix(1:4, 2, 2, byrow = FALSE), height = c(8, 3))
+	# Adjust layout: Boxplots (top) and Histograms (bottom)
+	layout(mat = matrix(1:2, 2, 1, byrow = TRUE), heights = c(2, 2, 2, 2))
 	par(bg = "white")
 	par(oma = c(0, 0, 0, 0))
 
-	par(mar = c(2, 4, 2, 2))
-	hist(
-		nvidia_3070_no_outliers$increase,
-		main = "Nvidia RTX 3070 Ti",
-		ylab = "Frequency",
-		xlim = c(-5, 7),
-		ylim = c(0, 30),
-		breaks = 5
-	)
-
-	par(mar = c(4, 2, 2, 2))
+	# Boxplot for Nvidia RTX 3070 Ti
+	par(mar = c(0, 4, 5, 2))
 	boxplot(
-		nvidia_3070$increase,
-		horizontal = TRUE,
-		ylim = c(-5, 7),
-		xlab = "FPS increase",
-		boxwex = 1.5
+	  nvidia_3070$increase,
+	  horizontal = TRUE,
+	  ylim = c(-5, 16),
+	  ylab = "AMD 7700",
+	  main = "Boxplots for Nvidia 3070 and AMD 7700",
+	  boxwex = 1.5
 	)
 
-	par(mar = c(2, 4, 2, 2))
-	hist(
-		amd_7700_no_outliers$increase,
-		main = "AMD Radeon RX 7700 XT",
-		ylab = "",
-		xlim = c(3, 16),
-		ylim = c(0, 30),
-		breaks = 5
-	)
-
-	par(mar = c(4, 2, 2, 2))
+	# Boxplot for AMD Radeon RX 7700 XT
+	par(mar = c(2, 4, 3, 2))
 	boxplot(
-		amd_7700$increase,
-		horizontal = TRUE,
-		ylim = c(3, 16),
-		xlab = "FPS increase",
-		boxwex = 1.5
+	  amd_7700$increase,
+	  horizontal = TRUE,
+	  ylim = c(-5, 16),
+	  ylab = "Nvidia 3070",
+	  main = "",
+	  boxwex = 1.5
+	)
+
+	dev.off()
+}
+
+# Histogram
+{
+	png("assets/histogram.png", width = 800, height = 800, res = 100)
+
+	# Adjust layout: Boxplots (top) and Histograms (bottom)
+	layout(mat = matrix(1:2, 2, 1, byrow = TRUE), heights = c(2, 2, 2, 2))
+	par(bg = "white")
+	par(oma = c(0, 0, 0, 0))
+
+	# Histogram for Nvidia RTX 3070 Ti
+	par(mar = c(2, 4, 4, 4))
+	hist(
+	  nvidia_3070_no_outliers$increase,
+	  main = "Histograms for Nvidia 3070 and AMD 7700",
+	  xlab = "Increase in FPS",
+	  ylab = "Frequency",
+	  xlim = c(4, 7),
+	  breaks = 10
+	)
+
+	# Histogram for AMD Radeon RX 7700 XT
+	par(mar = c(4, 4, 2, 4))
+	hist(
+	  amd_7700_no_outliers$increase,
+	  main = "",
+	  xlab = "Increase in FPS",
+	  ylab = "Frequency",
+	  xlim = c(4, 7),
+	  breaks = 10
 	)
 
 	dev.off()
