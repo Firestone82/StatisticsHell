@@ -9,15 +9,15 @@ splnění/nesplnění těchto předpokladů jak na základě explorační analý
 
 \newcommand{\shapireWilk}{0.006, 0.019}
 \newcommand{\symmetryTest}{0.218, 0.016}
-\newcommand{\ttValues}{5.663, "inf", 5.092, "inf"}
+\newcommand{\ttValues}{5.600, "inf", 5.100, "inf"}
 \newcommand{\rtxInterval}{(\tableValue{\ttValues}{0}, \tableValue{\ttValues}{1}) }
 \newcommand{\amdInterval}{(\tableValue{\ttValues}{2}, \tableValue{\ttValues}{3}) }
 
 \newcommand{\pointGuess}{0.400}
-\newcommand{\wilcoxLeftSidedInterval}{$(0.400, \infty)$}
+\newcommand{\wilcoxLeftSidedInterval}{$(0.399, \infty)$}
 
 \begin{enumerate}[label=\alph*)]
-    \item Graficky prezentujte srovnání nárůstu FPS pro grafické karty \nvidiaCard\ a \amdCard\ (vícenásobný krabicový graf, histogramy, q-q grafy).
+    \item Graficky prezentujte srovnání nárůstu FPS pro grafické karty \nvidiaCardTri\ a \amdCardSedm\ (vícenásobný krabicový graf, histogramy, q-q grafy).
     Srovnání okomentujte (včetně informace o případné manipulaci s datovým souborem).
 
     \vspace{1em}
@@ -27,8 +27,8 @@ splnění/nesplnění těchto předpokladů jak na základě explorační analý
     \end{minipage}
 
     \newpage
-    \item Na hladině významnosti 5 \% rozhodněte, zda jsou střední hodnoty nárůstů FPS (popř.\ mediány nárustů FPS) pro grafické karty \nvidiaCard\ a
-    \amdCard\ statisticky významné.\ K řešení využijte bodové a intervalové odhady i čistý test významnosti.\ Výsledky okomentujte.
+    \item Na hladině významnosti 5 \% rozhodněte, zda jsou střední hodnoty nárůstů FPS (popř.\ mediány nárustů FPS) pro grafické karty \nvidiaCardTri\ a
+    \amdCardSedm\ statisticky významné.\ K řešení využijte bodové a intervalové odhady i čistý test významnosti.\ Výsledky okomentujte.
 
     \vspace{1em}
     \begin{minipage}{0.94\textwidth}
@@ -45,16 +45,16 @@ splnění/nesplnění těchto předpokladů jak na základě explorační analý
             \begin{tabular}{|p{5cm}|P{3.5cm}|P{3.5cm}|P{8cm}|}
                 \hline
                             & \textbf{šikmost}                & \textbf{špičatost}              & \textbf{Shapirův-Wilkův test (p-hodnota)} \\ \hline
-                \nvidiaCard & \tableValue{\skewnessValues}{2} & \tableValue{\kurtosisValues}{2} & \tableValue{\shapireWilk}{0}              \\ \hline
-                \amdCard    & \tableValue{\skewnessValues}{3} & \tableValue{\kurtosisValues}{3} & \tableValue{\shapireWilk}{1}              \\ \hline
+                \nvidiaCardTri & \tableValue{\skewnessValues}{2} & \tableValue{\kurtosisValues}{2} & \tableValue{\shapireWilk}{0}              \\ \hline
+                \amdCardSedm    & \tableValue{\skewnessValues}{3} & \tableValue{\kurtosisValues}{3} & \tableValue{\shapireWilk}{1}              \\ \hline
             \end{tabular}%
         }
         \vspace{1em}
 
         % TODO: Barče, použít u obou Wilcoxon??
-        Na základě testu symetrie (viz \tabref{tab:deterministic-normality-test}) bylo u grafické karty \nvidiaCard\ zamítnuto symetrické rozdělení,
-        zatímco u grafické karty \amdCard\ nebylo.\@
-        Po provedení Wilcoxonova testu a SIGN testu bylo zjištěno, že medián nárůstu FPS je pro obě grafické karty významně vyšší než 0.
+        Na základě testu symetrie (viz \tabref{tab:deterministic-normality-test}) bylo u grafické karty \nvidiaCardTri\ nebylo zamítnuto symetrické rozdělení, zatímco u grafické karty \amdCardSedm\ bylo.\@
+        Vzhledem k tomu, že výsledky scheme srovnávat tak budeme dále předpokládat, že nárůst FPS u obou grafických karet není symetrický.
+        Po provedení SIGN testu bylo zjištěno, že medián nárůstu FPS je pro obě grafické karty významně vyšší než 0.
         Lze tedy konstatovat, že medián nárůstu FPS je pro obě grafické karty statisticky významný.
 
         \captionof{table}{Podrobné ověření normality nárůstu FPS dle grafických karet}
@@ -62,22 +62,22 @@ splnění/nesplnění těchto předpokladů jak na základě explorační analý
         \vspace{0.5em}
         \renewcommand{\arraystretch}{1.3}
         \resizebox{\textwidth}{!}{%
-            \begin{tabular}{|p{5cm}|P{5cm}|P{5cm}|P{5cm}|}
+            \begin{tabular}{|p{5cm}|P{5cm}|P{10cm}|}
                 \hline
-                            & \textbf{Test symetrie}        & \textbf{Wilcoxon test} & \textbf{SIGN test} \\ \hline
-                \nvidiaCard & \tableValue{\symmetryTest}{0} & \lowerThanZero         & ---------          \\ \hline
-                \amdCard    & \tableValue{\symmetryTest}{1} & ---------              & \lowerThanZero     \\ \hline
+                            & \textbf{Test symetrie}        & \textbf{SIGN test} \\ \hline
+                \nvidiaCardTri & \tableValue{\symmetryTest}{0} & \lowerThanZero     \\ \hline
+                \amdCardSedm    & \tableValue{\symmetryTest}{1} & \lowerThanZero     \\ \hline
             \end{tabular}%
         }
         \vspace{1em}
 
         Vzhledem k tomu, že očekáváme kladné hodnoty nárůstu FPS (výkonnostní skóre se zvyšuje), volíme levostranné intervalové odhady a levostranné testy.
-        U grafické karty \nvidiaCard\ lze očekávat, že průměrný nárůst FPS bude přibližně \tableValue{\meanValues}{2}.\@
+        U grafické karty \nvidiaCardTri\ lze očekávat, že průměrný nárůst FPS bude přibližně \tableValue{\meanValues}{2}.\@
         95\% levostranný intervalový odhad průměrného nárůstu FPS pro tuto kartu je \rtxInterval FPS.\@
         Intervalový odhad i p-hodnota levostranného t-testu ukazují, že průměrný nárůst FPS je statisticky významně větší než nula.
-        Jinými slovy, na hladině významnosti 0,05 lze nárůst FPS pro grafickou kartu \nvidiaCard\ považovat za statisticky významný. \\
+        Jinými slovy, na hladině významnosti 0,05 lze nárůst FPS pro grafickou kartu \nvidiaCardTri\ považovat za statisticky významný. \\
 
-        U grafické karty \amdCard\ lze odhady interpretovat obdobně.
+        U grafické karty \amdCardSedm\ lze odhady interpretovat obdobně.
         Nárůst FPS pro tuto kartu je přibližně \tableValue{\meanValues}{3}.\@ a 95\% levostranný intervalový odhad průměrného nárůstu FPS je \amdInterval FPS.\@
 
         \captionof{table}{Bodové a intervalové odhady střední hodnoty nárůstu FPS dle grafických karet}
@@ -88,25 +88,26 @@ splnění/nesplnění těchto předpokladů jak na základě explorační analý
             \begin{tabular}{|p{5cm}|P{4cm}|P{7cm}|P{4cm}|}
                 \hline
                             & \textbf{bodový odhad (FPS)} & \textbf{95\% levostranný intervalový odhad (FPS)} & \textbf{Levostranný t-test (p-hodnota)} \\ \hline
-                \nvidiaCard & \tableValue{\meanValues}{2} & \rtxInterval                                      & \lowerThanZero                          \\ \hline
-                \amdCard    & \tableValue{\meanValues}{3} & \amdInterval                                      & \lowerThanZero                          \\ \hline
+                \nvidiaCardTri & \tableValue{\meanValues}{2} & \rtxInterval                                      & \lowerThanZero                          \\ \hline
+                \amdCardSedm    & \tableValue{\meanValues}{3} & \amdInterval                                      & \lowerThanZero                          \\ \hline
             \end{tabular}%
         }
     \end{minipage}
 
     \newpage
-    \item Pro grafické karty \nvidiaCard\ a \amdCard\ rozhodněte (na hladině významnosti 5 \%), zda se jejich střední hodnoty (popř.\ mediány)
+    \item Pro grafické karty \nvidiaCardTri\ a \amdCardSedm\ rozhodněte (na hladině významnosti 5 \%), zda se jejich střední hodnoty (popř.\ mediány)
     nárůstu FPS po aplikaci 1.5 patche statisticky významně liší.
     K řešení využijte bodový a intervalový odhad i čistý test významnosti.
     Výsledky okomentujte.
 
     \vspace{1em}
     \begin{minipage}{0.94\textwidth}
-        Vzhledem k zamítnutí předpokladu normality nárůstu FPS (viz \tabref{tab:normality-test}) budeme i nadále pokračovat v aplikaci neparametrických metod.
+        Vzhledem k zamítnutí předpokladu normality nárůstu FPS (viz \tabref{tab:normality-test}) budeme i nadále pokračovat v aplikaci neparametrických metod. \\
 
-        % TODO: Skip tvar
+        Tvar rozdělení nárůstu FPS u obou grafických karet je srovnatelný (viz \figref{fig:histogram}).
+        Pro odhad a test významnosti rozdílu mediánů nárůstu FPS využijeme metody založené na Mannově-Whitneyho statistice.
 
-        \captionof{table}{Srovnání mediánů nárustu FPS grafické karty \nvidiaCard\ a \amdCard)}
+        \captionof{table}{Srovnání mediánů nárustu FPS grafické karty \nvidiaCardTri\ a \amdCardSedm)}
         \label{tab:median-comparison}
         \vspace{0.5em}
         \renewcommand{\arraystretch}{1.3}
@@ -121,10 +122,10 @@ splnění/nesplnění těchto předpokladů jak na základě explorační analý
         }
         \vspace{1em}
 
-        U grafické karty \nvidiaCard\ lze očekávat, že medián nárůstu FPS bude přibližně o \pointGuess větší než u grafické karty \amdCard.\@
+        U grafické karty \nvidiaCardTri\ lze očekávat, že medián nárůstu FPS bude přibližně o \pointGuess\ větší než u grafické karty \amdCardSedm.\@
         Odpovídající 95\% levostranný intervalový odhad rozdílu mediánů je \wilcoxLeftSidedInterval.\@
-        Mannův-Whitneyho levostranný test ukazuje, že nárůst FPS u grafické karty \nvidiaCard\ je na hladině významnosti 5\% statisticky významně
-        vyšší než u grafické karty \amdCard.\@
+        Mannův-Whitneyho levostranný test ukazuje, že nárůst FPS u grafické karty \nvidiaCardTri\ je na hladině významnosti 5\% statisticky významně
+        vyšší než u grafické karty \amdCardSedm.\@
     \end{minipage}
 \end{enumerate}
 

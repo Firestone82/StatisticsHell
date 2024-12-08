@@ -3,7 +3,7 @@
 
 Pomocí nástrojů explorační analýzy zkoumejte nárůst výkonnostních skóre (FPS) po aplikaci 1.5 patche 
 (tj. rozdíl výkonnostních skóre pro verzi „patched“ a verzi „release“) ve hře "Cyberpunk 2077" pro grafické karty 
-\nvidiaCard\ a \amdCard\. Data vhodně graficky prezentujte (krabicový graf, histogram, q-q graf)
+\nvidiaCardTri\ a \amdCardSedm\. Data vhodně graficky prezentujte (krabicový graf, histogram, q-q graf)
 a doplňte následující tabulku a text.
 
 \vspace{2em}
@@ -40,11 +40,13 @@ Výsledky popisné statistiky lze vidět v \tabref{tab:characteristics-summary} 
 }
 
 % Fuckin graphic card names
-\newcommand{\nvidiaCard}{Nvidia RTX 3070 Ti}
-\newcommand{\amdCard} {AMD Radeon RX 7700 XT}
+\newcommand{\nvidiaCardDva}{Nvidia RTX 2080 Ti}
+\newcommand{\nvidiaCardTri}{Nvidia RTX 3070 Ti}
+\newcommand{\amdCardSest}  {AMD Radeon RX 6800 XT}
+\newcommand{\amdCardSedm}  {AMD Radeon RX 7700 XT}
 
 \begin{table}[h!]
-    \caption{Nárůst výkonnostních skóre (FPS) po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafické karty \nvidiaCard\ a \amdCard\ (souhrnné statistiky)}
+    \caption{Nárůst výkonnostních skóre (FPS) po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafické karty \nvidiaCardTri\ a \amdCardSedm\ (souhrnné statistiky)}
     \label{tab:characteristics-summary}
     \vspace{0.5em}
     \renewcommand{\arraystretch}{1.3}
@@ -52,7 +54,7 @@ Výsledky popisné statistiky lze vidět v \tabref{tab:characteristics-summary} 
         \begin{tabular}{|p{3.5cm}|P{3cm}|P{3cm}|P{3cm}|P{3cm}|}
             \hline
                                   & \multicolumn{2}{P{6cm}|}{\textbf{Původní data}}                   & \multicolumn{2}{P{6cm}|}{\textbf{Data po odstranění odlehlých pozorování}} \\ \hline
-                                  & \centering \textbf{\nvidiaCard} & \textbf{\amdCard}               & \centering \textbf{\nvidiaCard} & \textbf{\amdCard}                        \\ \hline
+                                  & \centering \textbf{\nvidiaCardTri} & \textbf{\amdCardSedm}               & \centering \textbf{\nvidiaCardTri} & \textbf{\amdCardSedm}                        \\ \hline
             rozsah souboru        & \tableValue{\rangeValues}{0}    & \tableValue{\rangeValues}{1}    & \tableValue{\rangeValues}{2}    & \tableValue{\rangeValues}{3}             \\ \hline
             minimum               & \tableValue{\minValues}{0}      & \tableValue{\minValues}{1}      & \tableValue{\minValues}{2}      & \tableValue{\minValues}{3}               \\ \hline
             dolní kvartil         & \tableValue{\QfValues}{0}       & \tableValue{\QfValues}{1}       & \tableValue{\QfValues}{2}       & \tableValue{\QfValues}{3}                \\ \hline
@@ -61,7 +63,8 @@ Výsledky popisné statistiky lze vidět v \tabref{tab:characteristics-summary} 
             horní kvartil         & \tableValue{\QtValues}{0}       & \tableValue{\QtValues}{1}       & \tableValue{\QtValues}{2}       & \tableValue{\QtValues}{3}                \\ \hline
             maximum               & \tableValue{\maxValues}{0}      & \tableValue{\maxValues}{1}      & \tableValue{\maxValues}{2}      & \tableValue{\maxValues}{3}               \\ \hline
             směrodat. odchylka    & \tableValue{\sdValues}{0}       & \tableValue{\sdValues}{1}       & \tableValue{\sdValues}{2}       & \tableValue{\sdValues}{3}                \\ \hline
-            variační koefi. (\%)  & \tableValue{\cvValues}{0}       & \tableValue{\cvValues}{1}       & \tableValue{\cvValues}{2}       & \tableValue{\cvValues}{3}                \\ \hline
+%            variační koefi. (\%)  & \tableValue{\cvValues}{0}       & \tableValue{\cvValues}{1}       & \tableValue{\cvValues}{2}       & \tableValue{\cvValues}{3}                \\ \hline
+            variační koefi. (\%)  & ------------                    & ------------                    & ------------                    & ------------                             \\ \hline
             šikmost               & \tableValue{\skewnessValues}{0} & \tableValue{\skewnessValues}{1} & \tableValue{\skewnessValues}{2} & \tableValue{\skewnessValues}{3}          \\ \hline
             špičatost             & \tableValue{\kurtosisValues}{0} & \tableValue{\kurtosisValues}{1} & \tableValue{\kurtosisValues}{2} & \tableValue{\kurtosisValues}{3}          \\ \hline
             \multicolumn{5}{|p{16cm}|}{\textbf{Identifikace odlehlých pozorování (vnitřní hradby)}} \\ \hline
@@ -78,28 +81,28 @@ Výsledky popisné statistiky lze vidět v \tabref{tab:characteristics-summary} 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.75\textwidth]{assets/box_plot}
-    \caption{Krabicový graf znázorňující rozložení nárůstu FPS po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafické karty \nvidiaCard\ a \amdCard}
+    \caption{Krabicový graf znázorňující rozložení nárůstu FPS po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafické karty \nvidiaCardTri\ a \amdCardSedm}
     \label{fig:box_plot}
 \end{figure}
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.75\textwidth]{assets/histogram}
-    \caption{Histogram znázorňující rozložení nárůstu FPS po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafické karty \nvidiaCard\ a \amdCard}
+    \caption{Histogram znázorňující rozložení nárůstu FPS po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafické karty \nvidiaCardTri\ a \amdCardSedm}
     \label{fig:histogram}
 \end{figure}
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.85\textwidth]{assets/qq}
-    \caption{Q-Q graf znázorňující nárůst FPS po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafické karty \nvidiaCard\ a \amdCard}
+    \caption{Q-Q graf znázorňující nárůst FPS po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafické karty \nvidiaCardTri\ a \amdCardSedm}
     \label{fig:qq}
 \end{figure}
 
 \newpage
-\subsubsection*{Analýza nárůstu výkonnostních skóre (FPS) po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafickou kartu \nvidiaCard}
+\subsubsection*{Analýza nárůstu výkonnostních skóre (FPS) po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafickou kartu \nvidiaCardTri}
 
-Během testu byl zjišťován nárůst FPS pro grafickou kartu \nvidiaCard\ ve hře "Cyberpunk 2077" mezi původním release a verzí s 1.5 patchem
+Během testu byl zjišťován nárůst FPS pro grafickou kartu \nvidiaCardTri\ ve hře "Cyberpunk 2077" mezi původním release a verzí s 1.5 patchem
 pro \tableValue{\rangeValues}{0} testovacích systémů. Zjištěný nárůst FPS se pohyboval v rozmezí \tableValue{\minValues}{0} FPS
 až \tableValue{\maxValues}{0} FPS. Nárůst FPS v testu č. 20 byl na základě metody vnitřních hradeb identifikován jako odlehlé pozorování
 a nebude zahrnut do dalšího zpracování. Možné příčiny vzniku odlehlých pozorování jsou: Chyba při testování vzniklá náhlým výkyvem výkonu počítače
@@ -118,15 +121,15 @@ Za pomocí metody vnitřních hradeb bylo identifikováno odlehlé pozorování 
 Medián nárůstu činil \tableValue{\medianValues}{3} FPS, přičemž polovina výsledků spadala do intervalu \tableValue{\QfValues}{3} až \tableValue{\QtValues}{3} FPS.\@
 Opět i zde není variační koeficient vhodným měřítkem variability souboru.
 
-\subsubsection*{Ověření normality nárůstu výkonnostních skóre (FPS) po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafickou kartu \nvidiaCard}
+\subsubsection*{Ověření normality nárůstu výkonnostních skóre (FPS) po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafickou kartu \nvidiaCardTri}
 
-Na základě grafického zobrazení (viz \figref{fig:qq}) u grafické karty \nvidiaCard\ a výběrové šikmosti a špičatosti (viz \tabref{tab:characteristics-summary},
+Na základě grafického zobrazení (viz \figref{fig:qq}) u grafické karty \nvidiaCardTri\ a výběrové šikmosti a špičatosti (viz \tabref{tab:characteristics-summary},
 výběrová šikmost a špičatost leží v intervalu (-2, 2)) lze předpokládat, že pozorovaný nárůst FPS má normální rozdělení. Dle pravidla 3$\sigma$ lze tedy očekávat,
 že přibližně u 95 \% naměřených nárůstů ve výkonu bude \tableValue{\sigmaValues}{0} FPS až \tableValue{\sigmaValues}{1} FPS\@.
 
-\subsubsection*{Ověření normality nárůstu výkonnostních skóre (FPS) po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafickou kartu \amdCard}
+\subsubsection*{Ověření normality nárůstu výkonnostních skóre (FPS) po aplikaci 1.5 patche ve hře "Cyberpunk 2077" pro grafickou kartu \amdCardSedm}
 
-Na základě grafického zobrazení (viz \figref{fig:qq}) u grafické karty \amdCard\ a výběrové šikmosti a špičatosti (viz \tabref{tab:characteristics-summary},
+Na základě grafického zobrazení (viz \figref{fig:qq}) u grafické karty \amdCardSedm\ a výběrové šikmosti a špičatosti (viz \tabref{tab:characteristics-summary},
 výběrová šikmost a špičatost leží v intervalu (-2, 2)) lze předpokládat, že pozorovaný nárůst FPS má normální rozdělení. Dle pravidla 3$\sigma$ lze tedy očekávat,
 že přibližně u 95 \% naměřených nárůstů ve výkonu bude \tableValue{\sigmaValues}{2} FPS až \tableValue{\sigmaValues}{3} FPS\@.
 

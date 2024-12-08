@@ -57,10 +57,20 @@ outliers <- function(data) {
 	return(d)
 }
 
+nvidia_2080_outliers <- outliers(nvidia_2080)
+nvidia_2080_no_outliers <- nvidia_2080[-nvidia_2080_outliers$Id,]
+print(paste("Nvidia 2080 has", nrow(nvidia_2080_outliers), "outliers"))
+print(nvidia_2080_outliers)
+
 nvidia_3070_outliers <- outliers(nvidia_3070)
 nvidia_3070_no_outliers <- nvidia_3070[-nvidia_3070_outliers$Id,]
 print(paste("Nvidia 3070 has", nrow(nvidia_3070_outliers), "outliers"))
 print(nvidia_3070_outliers)
+
+amd_6800_outliers <- outliers(amd_6800)
+amd_6800_no_outliers <- amd_6800[-amd_6800_outliers$Id,]
+print(paste("AMD 6800 has", nrow(amd_6800_outliers), "outliers"))
+print(amd_6800_outliers)
 
 amd_7700_outliers <- outliers(amd_7700)
 amd_7700_no_outliers <- amd_7700[-amd_7700_outliers$Id,]
